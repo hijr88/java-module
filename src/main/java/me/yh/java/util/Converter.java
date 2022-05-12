@@ -3,13 +3,17 @@ package me.yh.java.util;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
 
+@RequiredArgsConstructor
+@Component
 public class Converter {
 
-    ObjectMapper mapper = new ObjectMapper();
+    private final ObjectMapper mapper;
 
     public <T> List<T> jsonToList(String str, TypeReference<List<T>> type) {
         try {
@@ -41,15 +45,5 @@ public class Converter {
 
     public <K, V> Map<K, V> objToMap(Object obj, TypeReference<Map<K, V>> type) {
         return mapper.convertValue(obj, type);
-    }
-
-    public static void main(String[] args) {
-        Converter converter = new Converter();
-
-        List<String> list = converter.jsonToList("[123, 456]", new TypeReference<>() {});
-        System.out.println(list);
-
-        Map<String, Object> map = converter.jsonToMap("{\"a\":\"123\",\"b\":\"456\"}", new TypeReference<>() {});
-        System.out.println(map);
     }
 }

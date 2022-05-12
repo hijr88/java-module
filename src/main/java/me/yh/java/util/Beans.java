@@ -11,12 +11,14 @@ import org.springframework.http.converter.FormHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+@Component
 public class Beans {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
