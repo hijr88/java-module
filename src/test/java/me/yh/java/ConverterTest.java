@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -17,10 +20,8 @@ public class ConverterTest {
 
     @Test
     void main() {
-        List<String> list = converter.jsonToList("[123, 456]", new TypeReference<>() {});
-        System.out.println(list);
+        LocalDate date = LocalDate.parse("20220620", DateTimeFormatter.ofPattern("yyyyMMdd"));
+        System.out.println(date);
 
-        Map<String, Object> map = converter.jsonToMap("{\"a\":\"123\",\"b\":\"456\"}", new TypeReference<>() {});
-        System.out.println(map);
     }
 }

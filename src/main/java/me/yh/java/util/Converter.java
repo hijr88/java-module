@@ -15,6 +15,14 @@ public class Converter {
 
     private final ObjectMapper mapper;
 
+    public String toJson(Object obj) {
+        try {
+            return mapper.writeValueAsString(obj);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public <T> List<T> jsonToList(String str, TypeReference<List<T>> type) {
         try {
             return mapper.readValue(str, type);
